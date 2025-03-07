@@ -36,7 +36,7 @@
 ---
 
 ## News 📢
-- We released the **IDEA** codebase and paper! 🎉 [Paper](https://arxiv.org/pdf/XXXX.XXXXX)
+- We released the **IDEA** codebase!
 - Great news! Our paper has been accepted to **CVPR 2025**! 🏆
 
 ---
