@@ -127,12 +127,12 @@ Additionally, we construct three **text-enhanced multi-modal object ReID benchma
 </p>
 
 ### Rank-list Visualization
-#### Multi-Modal Person ReID 
+#### Multi-modal Person ReID 
 <p align="center">
     <img src="assets/PersonRank.png" alt="Rank-list" style="width:100%;">
 </p>
 
-#### Multi-Modal Vehicle ReID 
+#### Multi-modal Vehicle ReID 
 <p align="center">
     <img src="assets/VehicleRank.png" alt="Rank-list" style="width:100%;">
 </p>
