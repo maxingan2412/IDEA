@@ -16,7 +16,7 @@
     <a href="https://scholar.google.com/citations?user=D3nE0agAAAAJ&hl=zh-CN" rel="external nofollow noopener" target="_blank"><strong>Huchuan Lu</strong></a>
   </p>
 <p align="center">
-    <a href="https://arxiv.org/pdf/XXXX.XXXXX" rel="external nofollow noopener" target="_blank">CVPR 2025 Paper</a>
+    <a href="https://arxiv.org/pdf/2503.10324" rel="external nofollow noopener" target="_blank">CVPR 2025 Paper</a>
   <p align="center">
     <img src="assets/Motivation.png" alt="Description of the image" style="width:100%;">
   <p align="center">
