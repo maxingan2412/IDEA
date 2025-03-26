@@ -187,6 +187,10 @@ pip install -r requirements.txt
 python train.py --config_file ./configs/RGBNT201/IDEA.yml
 ```
 
+### Training Example
+- **RGBNT201**: [LOGFILE](./assets/train_log.txt) / [WEIGHTS](https://pan.baidu.com/s/1t2j9yoVvGp6t0CepxUGpRA)
+- **CODE**: g6om
+
 ## Star History 🌟
 
 [![Star History Chart](https://api.star-history.com/svg?repos=924973292/IDEA&type=Date)](https://star-history.com/#924973292/IDEA&Date)
