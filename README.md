@@ -188,7 +188,7 @@ python train.py --config_file ./configs/RGBNT201/IDEA.yml
 ```
 
 ### Training Example
-- **RGBNT201**: [LOGFILE](./assets/train_log.txt) / [WEIGHTS](https://pan.baidu.com/s/1t2j9yoVvGp6t0CepxUGpRA)
+- **RGBNT201**: [LOGFILE](./assets/train_log.txt) / [WEIGHT](https://pan.baidu.com/s/1t2j9yoVvGp6t0CepxUGpRA)
 - **CODE**: g6om
 
 ## Star History 🌟
