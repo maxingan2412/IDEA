@@ -3,6 +3,7 @@ import os
 import sys
 import os.path as osp
 
+import datetime
 
 def setup_logger(name, save_dir, if_train):
     logger = logging.getLogger(name)
@@ -17,10 +18,17 @@ def setup_logger(name, save_dir, if_train):
     if save_dir:
         if not osp.exists(save_dir):
             os.makedirs(save_dir)
+
+        # 获取当前时间戳
+        timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M')
+
+        # 根据模式生成日志文件名
         if if_train:
-            fh = logging.FileHandler(os.path.join(save_dir, "train_log.txt"), mode='w')
+            log_filename = f"train_log_{timestamp}.txt"
         else:
-            fh = logging.FileHandler(os.path.join(save_dir, "test_log.txt"), mode='w')
+            log_filename = f"test_log_{timestamp}.txt"
+
+        fh = logging.FileHandler(os.path.join(save_dir, log_filename), mode='w')
         fh.setLevel(logging.DEBUG)
         fh.setFormatter(formatter)
         logger.addHandler(fh)

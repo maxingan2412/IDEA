@@ -8,6 +8,7 @@ from utils.meter import AverageMeter
 from utils.metrics import R1_mAP_eval, R1_mAP
 from torch.cuda import amp
 import torch.distributed as dist
+import datetime
 
 
 def do_train(cfg,
@@ -143,8 +144,20 @@ def do_train(cfg,
                     best_index['Rank-1'] = cmc[0]
                     best_index['Rank-5'] = cmc[4]
                     best_index['Rank-10'] = cmc[9]
+
+                    # 获取当前时间并格式化
+                    timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M')
+                    # 格式化指标数值
+                    map_str = f'{mAP:.3f}'
+                    rank1_str = f'{cmc[0]:.3f}'
+
+                    # 构造文件名
+                    filename = f"{cfg.MODEL.NAME}_{timestamp}_mAP_{map_str}_R1_{rank1_str}.pth"
+
+                    # 保存模型
                     torch.save(model.state_dict(),
-                               os.path.join(cfg.OUTPUT_DIR, cfg.MODEL.NAME + 'best.pth'))
+                               os.path.join(cfg.OUTPUT_DIR, filename))
+
                 logger.info("~" * 50)
                 logger.info("!!!!【 The metrics are based on the feature: LOCAL_t 】!!!!")
                 logger.info("~" * 50)
