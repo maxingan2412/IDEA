@@ -5,6 +5,8 @@ from modeling.clip.simple_tokenizer import SimpleTokenizer as _Tokenizer
 _tokenizer = _Tokenizer()
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
 
+import os
+
 def weights_init_kaiming(m):
     classname = m.__class__.__name__
     if classname.find('Linear') != -1:
@@ -173,7 +175,12 @@ def make_model(cfg, num_class, camera_num, view_num):
 
 from modeling.clip import clip
 def load_clip_to_cpu(cfg, backbone_name, h_resolution, w_resolution, vision_stride_size):
-    model_path = '/13994058190/WYH/PTH/ViT-B-16.pt'
+    #model_path = '/13994058190/WYH/PTH/ViT-B-16.pt'
+    #print(os.path)
+    currentdir = os.getcwd()
+    model_path = os.path.abspath(os.path.join(currentdir, '..', 'ViT-B-16.pt'))
+
+    #model_path = '/13994058190/WYH/PTH/ViT-B-16.pt'
     print("Currently, the model path is set to: ", model_path)
     print("~Please Change the model path to your own path~")
 
