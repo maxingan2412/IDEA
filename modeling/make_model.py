@@ -175,10 +175,10 @@ class IDEA(nn.Module):
                                                                            view_label=view_label)
             if self.DA:
                 boss_fea = torch.stack([RGB_v_global, NI_v_global, TI_v_global, RGB_t_global, NI_t_global, TI_t_global],
-                                       dim=1)
+                                       dim=1) #6个 cls token的集合
                 visual, textual = self.CDA(RGB_v_feas, NI_v_feas, TI_v_feas, boss_fea, writer=writer,
                                                              epoch=epoch,
-                                                             img_path=img_path)
+                                                             img_path=img_path) #RGB_v_feas NI_v_feas TI_v_feas 64 128 512, boss_fea 64 6 512
                 score_vv = self.visual_classifier(self.bottleneck_visual(visual))
                 score_tt = self.textual_classifier(self.bottleneck_textual(textual))
             if self.direct:

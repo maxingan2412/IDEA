@@ -139,24 +139,32 @@ def do_train(cfg,
                 writer.add_scalar('RGBNT201/Rank-1', cmc[0], epoch)
                 writer.add_scalar('RGBNT201/Rank-5', cmc[4], epoch)
                 writer.add_scalar('RGBNT201/Rank-10', cmc[9], epoch)
+                # if mAP >= best_index['mAP']:
+                #     best_index['mAP'] = mAP
+                #     best_index['Rank-1'] = cmc[0]
+                #     best_index['Rank-5'] = cmc[4]
+                #     best_index['Rank-10'] = cmc[9]
+                #
+                #     # 获取当前时间并格式化
+                #     timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M')
+                #     # 格式化指标数值
+                #     map_str = f'{mAP:.3f}'
+                #     rank1_str = f'{cmc[0]:.3f}'
+                #
+                #     # 构造文件名
+                #     filename = f"{cfg.MODEL.NAME}_{timestamp}_mAP_{map_str}_R1_{rank1_str}.pth"
+                #
+                #     # 保存模型
+                #     torch.save(model.state_dict(),
+                #                os.path.join(cfg.OUTPUT_DIR, filename))
+
                 if mAP >= best_index['mAP']:
                     best_index['mAP'] = mAP
                     best_index['Rank-1'] = cmc[0]
                     best_index['Rank-5'] = cmc[4]
                     best_index['Rank-10'] = cmc[9]
-
-                    # 获取当前时间并格式化
-                    timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M')
-                    # 格式化指标数值
-                    map_str = f'{mAP:.3f}'
-                    rank1_str = f'{cmc[0]:.3f}'
-
-                    # 构造文件名
-                    filename = f"{cfg.MODEL.NAME}_{timestamp}_mAP_{map_str}_R1_{rank1_str}.pth"
-
-                    # 保存模型
                     torch.save(model.state_dict(),
-                               os.path.join(cfg.OUTPUT_DIR, filename))
+                               os.path.join(cfg.OUTPUT_DIR, cfg.MODEL.NAME + 'best.pth'))
 
                 logger.info("~" * 50)
                 logger.info("!!!!【 The metrics are based on the feature: LOCAL_t 】!!!!")

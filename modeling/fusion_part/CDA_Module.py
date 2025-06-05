@@ -395,7 +395,7 @@ class DAttentionBaseline(nn.Module):
         b_, c_, h_, w_ = query.size()
         dtype, device = x.dtype, x.device
         data = torch.cat([x, y, z], dim=1)
-        reference = self._get_ref_points(H, W, B, self.ksize, self.stride, dtype, device)
+        reference = self._get_ref_points(H, W, B, self.ksize, self.stride, dtype, device) #这里好像是论文中的local mixer
         if self.share_offset:
             pos_x, pos_y, pos_z, Hk, Wk = self.off_set_shared(data, reference)
         else:
@@ -611,7 +611,7 @@ class CDA(nn.Module):
 
         # 使用 unfold 操作实现滑动窗口式的分割
         # unfold(2) 是在高度 H 维度上分块, unfold(3) 是在宽度 W 维度上分块
-        unfolded = input_tensor.unfold(2, block_h, stride_h).unfold(3, block_w, stride_w)
+        unfolded = input_tensor.unfold(2, block_h, stride_h).unfold(3, block_w, stride_w) #64 512 16 8 --> 64 , 512, 1,1, 16, 8
 
         # 结果的形状为 (B, C, num_blocks_h, num_blocks_w, block_h, block_w)
         # 需要将通道 C 维度移到最后，符合 (B, num_blocks_h, num_blocks_w, C, block_h, block_w)
@@ -649,7 +649,7 @@ class CDA(nn.Module):
         x = x.reshape(x.size(0), self.q_size[0], self.q_size[1], -1).permute(0, 3, 1, 2)
         y = y.reshape(y.size(0), self.q_size[0], self.q_size[1], -1).permute(0, 3, 1, 2)
         z = z.reshape(z.size(0), self.q_size[0], self.q_size[1], -1).permute(0, 3, 1, 2)
-        x_blocks = self.split_into_blocks_with_overlap(x, self.window_size, self.stride_block).flatten(1, 2)
+        x_blocks = self.split_into_blocks_with_overlap(x, self.window_size, self.stride_block).flatten(1, 2) # x: 64 512 16 8 , (16,8),(16,8)
         y_blocks = self.split_into_blocks_with_overlap(y, self.window_size, self.stride_block).flatten(1, 2)
         z_blocks = self.split_into_blocks_with_overlap(z, self.window_size, self.stride_block).flatten(1, 2)
         boss = boss.permute(0, 2, 1).unsqueeze(-2)
